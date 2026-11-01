@@ -1,3 +1,8 @@
+variable "allowed_ssh_cidr" {
+  description = "Trusted IPv4 CIDR for SSH"
+  type        = string
+}
+
 resource "aws_security_group" "SGTFVPC" {
   name        = "allow_http"
   description = "Allow http inbound traffic"
@@ -13,11 +18,11 @@ resource "aws_security_group" "SGTFVPC" {
   }
 
   ingress {
-    description = "ssh"
+    description = "ssh from trusted IP"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [var.allowed_ssh_cidr]
   }
 
   egress {
