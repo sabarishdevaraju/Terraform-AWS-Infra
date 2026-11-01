@@ -1,9 +1,10 @@
-private rsa key
+#private rsa key
 *.pem
 
 # Terraform state and backups
 *.tfstate
 *.tfstate.*
+*.tfvars
 
 # Local credentials and configuration
 .env
